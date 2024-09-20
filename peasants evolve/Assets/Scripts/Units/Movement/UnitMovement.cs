@@ -18,7 +18,7 @@ public class UnitMovement : MonoBehaviour
     {
         myCam = Camera.main;
         myAgent = GetComponent<NavMeshAgent>();
-        myAgent.stoppingDistance = 5f; // Adjust as needed
+        myAgent.stoppingDistance = 1f; // Adjust as needed
         myAgent.autoBraking = true;
         resourceGatherer = GetComponent<ResourceGatherer>();
         animator = GetComponent<Animator>();
@@ -62,7 +62,6 @@ public class UnitMovement : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
             {
-                Debug.Log("Ground clicked at position: " + hit.point);
                 myAgent.isStopped = false;
                 myAgent.ResetPath();
                 myAgent.SetDestination(hit.point);
@@ -72,6 +71,10 @@ public class UnitMovement : MonoBehaviour
             else
             {
                 Debug.Log("Ground not hit.");
+                myAgent.isStopped = true;
+                animator.SetBool("isIdle", true);
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isAttacking", false);
             }
         }
     }

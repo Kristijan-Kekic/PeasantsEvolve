@@ -38,7 +38,7 @@ public class PlayerAttackManager : MonoBehaviour
                     UnitStateMachine stateMachine = unit.GetComponent<UnitStateMachine>();
                     if (stateMachine != null)
                     {
-                        stateMachine.SetTarget(enemyTarget); // Set the target
+                        stateMachine.SetTarget(enemyTarget);
                     }
                 }
             }

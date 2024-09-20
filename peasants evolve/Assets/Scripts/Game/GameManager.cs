@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        Time.timeScale = 5f;
         CheckVictoryOrDefeat();
     }
 
