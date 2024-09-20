@@ -285,7 +285,6 @@ public class ResourceGatherer : MonoBehaviour
     {
         if (building == null)
         {
-            Debug.LogWarning($"{gameObject.name}: BuildingProgress is null.");
             return;
         }
 
@@ -294,14 +293,12 @@ public class ResourceGatherer : MonoBehaviour
         currentState = State.MovingToBuilding;
         navMeshAgent.SetDestination(building.transform.position);
 
-        Debug.Log($"{gameObject.name} is moving to building at {building.transform.position}");
     }
 
     private void BuildStructure()
     {
         if (targetBuilding == null || targetBuilding.IsCompleted())
         {
-            Debug.LogWarning($"{gameObject.name}: Building target is null or completed. Switching to Idle.");
             currentState = State.Idle;
             navMeshAgent.isStopped = false;
             return;
@@ -311,7 +308,6 @@ public class ResourceGatherer : MonoBehaviour
         float buildSpeed = unitStats.baseBuildSpeed * buildingProgress.buildSpeedMultiplier;
 
         workTimer += Time.deltaTime;
-        Debug.Log($"{gameObject.name}: Building... Work Timer: {workTimer}");
 
         if (workTimer >= chopTime)
         {
